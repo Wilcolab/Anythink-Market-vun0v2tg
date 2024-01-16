@@ -13,7 +13,7 @@ echo "export CODESPACE_WDS_SOCKET_PORT=443" >> ~/.bashrc
 
 
 # Change backend port visibility to public
-echo "(&>/dev/null .devcontainer/open_port.sh >> /tmp/ports.log &)" >> ~/.bashrc
+.devcontainer/open_port.sh >> /tmp/ports.log
 
 
 # Export welcome prompt in bash:
