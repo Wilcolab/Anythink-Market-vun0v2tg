@@ -1,7 +1,7 @@
 #!/bin/sh
 sleep 10s
 
-.devcontainer/open_port.sh >> /tmp/ports.log 
+/bin/bash -c ".devcontainer/open_port.sh"
 
 echo "Welcome to"
 echo "     _                      _     _       _           _     "
