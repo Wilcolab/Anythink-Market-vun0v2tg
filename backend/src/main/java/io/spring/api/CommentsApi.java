@@ -1,6 +1,7 @@
 package io.spring.api;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
+import io.spring.api.exception.NoAuthorizationException;
 import io.spring.api.exception.ResourceNotFoundException;
 import io.spring.application.CommentQueryService;
 import io.spring.application.data.CommentData;
@@ -8,12 +9,13 @@ import io.spring.core.comment.Comment;
 import io.spring.core.comment.CommentRepository;
 import io.spring.core.item.Item;
 import io.spring.core.item.ItemRepository;
+import io.spring.core.service.AuthorizationService;
 import io.spring.core.user.User;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -70,6 +72,9 @@ public class CommentsApi {
         .findById(item.getId(), commentId)
         .map(
             comment -> {
+              if (!AuthorizationService.canWriteComment(user, item, comment)) {
+                throw new NoAuthorizationException();
+              }
               commentRepository.remove(comment);
               return ResponseEntity.noContent().build();
             })
