@@ -28,6 +28,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.22.15, @babel/runtime@npm:^7.24.5":
+  version: 7.24.5
+  resolution: "@babel/runtime@npm:7.24.5"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: 755383192f3ac32ba4c62bd4f1ae92aed5b82d2c6665f39eb28fa94546777cf5c63493ea92dd03f1c2e621b17e860f190c056684b7f234270fdc91e29beda063
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.23.2":
   version: 7.23.2
   resolution: "@babel/runtime@npm:7.23.2"
@@ -1011,24 +1020,93 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wix/identity@npm:^1.0.62":
-  version: 1.0.63
-  resolution: "@wix/identity@npm:1.0.63"
+"@wix/filter-builder@npm:^1.0.51":
+  version: 1.0.51
+  resolution: "@wix/filter-builder@npm:1.0.51"
   dependencies:
-    "@wix/metro-runtime": ^1.0.0
-    "@wix/motion-edm-autogen-query-wrapper": ^1.0.0
-    "@wix/sdk-types": ^1.0.0
-  checksum: 1b6c0748680add2d4685c307d5bbbabc1e1ea43757cda240e06cddd9e6cbc9178ea033f9b853d2382be326024db68089ef6c77175a4ae21554f9f58c0dc4c779
+    "@babel/runtime": ^7.22.15
+    kind-of: ~5.1.0
+    tslib: ^2.6.2
+  checksum: 66fde980152e894d63deee303fd631679da7b74472593bcc7bc77092d4fedc1a1a8328cc95fc42f24adbcd8ca9b2403c91319f4ce8839e4b68bc9ec95a0ab741
   languageName: node
   linkType: hard
 
-"@wix/image-kit@npm:^1.40.0":
-  version: 1.40.0
-  resolution: "@wix/image-kit@npm:1.40.0"
+"@wix/identity@npm:^1.0.78":
+  version: 1.0.80
+  resolution: "@wix/identity@npm:1.0.80"
+  dependencies:
+    "@wix/identity_authentication": 1.0.10
+    "@wix/identity_oauth": 1.0.8
+    "@wix/identity_recovery": 1.0.8
+    "@wix/identity_verification": 1.0.8
+  checksum: 3dd870d39b4aca225127150cc59c240b7ee40e392f2dabcbcb975c43090d5c1c61b07dd0ca473417da5818d769b6e0bc8f84946f75e29463539d49b45b6d0ee9
+  languageName: node
+  linkType: hard
+
+"@wix/identity_authentication@npm:1.0.10":
+  version: 1.0.10
+  resolution: "@wix/identity_authentication@npm:1.0.10"
+  dependencies:
+    "@wix/metro-runtime": ^1.1528.0
+    "@wix/motion-edm-autogen-query-wrapper": ^1.0.37
+    "@wix/sdk-runtime": ^0.2.10
+    "@wix/sdk-types": ^1.5.11
+  checksum: ec36c71c4f602694ced0f3f8622409016a1644d1a55ab373cfc36258c618a501c9ecfea147d797f05b9e31349e38a0e1221dbe998f17d75b8e67cf2bf1f9da32
+  languageName: node
+  linkType: hard
+
+"@wix/identity_oauth@npm:1.0.8":
+  version: 1.0.8
+  resolution: "@wix/identity_oauth@npm:1.0.8"
+  dependencies:
+    "@wix/metro-runtime": ^1.1528.0
+    "@wix/motion-edm-autogen-query-wrapper": ^1.0.37
+    "@wix/sdk-runtime": ^0.2.10
+    "@wix/sdk-types": ^1.5.11
+  checksum: e22d55823f84052eff3a5afa53d1e3df885d06e82c01ff8f1d726e8d235aa24546cbcff6242895287cc04c7d5a1a06a7417008928847d0165e9b090cfbb98325
+  languageName: node
+  linkType: hard
+
+"@wix/identity_recovery@npm:1.0.8":
+  version: 1.0.8
+  resolution: "@wix/identity_recovery@npm:1.0.8"
+  dependencies:
+    "@wix/metro-runtime": ^1.1528.0
+    "@wix/motion-edm-autogen-query-wrapper": ^1.0.37
+    "@wix/sdk-runtime": ^0.2.10
+    "@wix/sdk-types": ^1.5.11
+  checksum: d38b9cff63c2be2c085107b5177d12cfe4a45f57f03b45ee1cf8608123cf5517324e01d6b007dd47726461d2615f81c3cdee1c21ef7cc2659e1aff9e5c6eab27
+  languageName: node
+  linkType: hard
+
+"@wix/identity_verification@npm:1.0.8":
+  version: 1.0.8
+  resolution: "@wix/identity_verification@npm:1.0.8"
+  dependencies:
+    "@wix/metro-runtime": ^1.1528.0
+    "@wix/motion-edm-autogen-query-wrapper": ^1.0.37
+    "@wix/sdk-runtime": ^0.2.10
+    "@wix/sdk-types": ^1.5.11
+  checksum: e28a1dbca153c2968c5d4a4c05be29ab5f08e932dbbe79fa18e8ded7a2d06a064b537b3a45dad48815a4f52ef0d97b1cf813d2d32d6703cc3dd80a64cb8bf3b1
+  languageName: node
+  linkType: hard
+
+"@wix/image-kit@npm:^1.67.0":
+  version: 1.67.0
+  resolution: "@wix/image-kit@npm:1.67.0"
+  dependencies:
+    "@babel/runtime": ^7.24.5
+    tslib: ^2.6.2
+  checksum: c0370fe3c8ec901950a662d98620d5a2f3f2f17c72c82d4d8e5cb75c579bf5411e98529e9aea74df9cdd82fb8a10c0c3a130945338ccd64fb4cadc361b9fa7ac
+  languageName: node
+  linkType: hard
+
+"@wix/metro-public-utils@npm:1.0.25":
+  version: 1.0.25
+  resolution: "@wix/metro-public-utils@npm:1.0.25"
   dependencies:
     "@babel/runtime": ^7.0.0
-    tslib: ^2.0.0
-  checksum: 2373efe03a10a4a57e099b4a769a6224615a94cefb91b00069e3163b3f9fb488743ccefa352de81f07e582b7b371a7a04f9eb42d6492cfaec753e94cf77ae9cd
+  checksum: fcfbc5f1449e935dec62f6aa6ea5da4a781e27e913e6e14a616342726a52d587cc6ddf7991df661da16d0e355d1a7d686ebeeceb16dd4cf3a76592b828e6a288
   languageName: node
   linkType: hard
 
@@ -1055,6 +1133,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wix/metro-runtime@npm:^1.1528.0":
+  version: 1.1690.0
+  resolution: "@wix/metro-runtime@npm:1.1690.0"
+  dependencies:
+    "@wix/metro-public-utils": 1.0.25
+    "@wix/motion-edm-autogen-p13n": 1.0.60
+    "@wix/motion-edm-autogen-transformations": 1.48.0
+    "@wix/motion-edm-autogen-transformations-core": 1.44.0
+    lodash: ^4.17.21
+    long: ^4.0.0
+    querystring: ^0.2.1
+  checksum: c40d574a66bdc3d5a12e4952867a5a17e98f0f4e457bb578f6dda7640af381c4c7851259a8bb10f464a870472c73ae0aa9781fad90b1ba87f52b21a55836bff9
+  languageName: node
+  linkType: hard
+
 "@wix/motion-edm-autogen-common@npm:1.16.0":
   version: 1.16.0
   resolution: "@wix/motion-edm-autogen-common@npm:1.16.0"
@@ -1067,6 +1160,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wix/motion-edm-autogen-common@npm:1.40.0":
+  version: 1.40.0
+  resolution: "@wix/motion-edm-autogen-common@npm:1.40.0"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    "@wix/motion-edm-autogen-types": 1.0.28
+    lodash: ~4.17.0
+    tslib: ^2.0.0
+  checksum: 24a28b4c2de2810b82c889467dafea123bf12698925b6222047fa830a6e02e84b894c73802c81f2e59b126176a66fadf8ad58d1855047fa45a41292668bd6254
+  languageName: node
+  linkType: hard
+
 "@wix/motion-edm-autogen-p13n@npm:1.0.18":
   version: 1.0.18
   resolution: "@wix/motion-edm-autogen-p13n@npm:1.0.18"
@@ -1075,6 +1180,17 @@ __metadata:
     "@wix/motion-edm-autogen-types": 1.0.8
     lodash: ~4.17.0
   checksum: 76b333798614afe9fd83e73b3b3cf8be7e604126649ccb6eb7d8a652e1b7cef0817a16ac0ce60e63ea0765e7ed32ffaf46260ca30be6f43c5135e565e0bf992f
+  languageName: node
+  linkType: hard
+
+"@wix/motion-edm-autogen-p13n@npm:1.0.60":
+  version: 1.0.60
+  resolution: "@wix/motion-edm-autogen-p13n@npm:1.0.60"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    "@wix/motion-edm-autogen-types": 1.0.28
+    lodash: ~4.17.0
+  checksum: da6cf46424e835938b56a9793eb3ed71377a94f3f8b24888f31f3ec79226f294abddb70338087a2e5aaa89f7ff54b59b78195f3521ac25b805174fe4e7674988
   languageName: node
   linkType: hard
 
@@ -1093,6 +1209,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wix/motion-edm-autogen-query-wrapper@npm:^1.0.37":
+  version: 1.0.73
+  resolution: "@wix/motion-edm-autogen-query-wrapper@npm:1.0.73"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    "@wix/filter-builder": ^1.0.51
+    "@wix/motion-edm-autogen-common": 1.40.0
+    "@wix/motion-edm-autogen-transformations-core": 1.44.0
+    lodash: ~4.17.0
+    long: ~4.0.0
+    tslib: ^2.0.0
+  checksum: b24e26e06e2e8968b7942d75e9d98de0a30bcddb0a39abd95ff7ce9fe2fc0b0864144790919fbaf17dca13fc4d9882d447465c2653c2051cbba3b05acd679807
+  languageName: node
+  linkType: hard
+
 "@wix/motion-edm-autogen-transformations-core@npm:1.18.0":
   version: 1.18.0
   resolution: "@wix/motion-edm-autogen-transformations-core@npm:1.18.0"
@@ -1106,6 +1237,22 @@ __metadata:
     lodash: ~4.17.0
     tslib: ^2.0.0
   checksum: 556f1c7d684c5590e239fdd7990e6404fecd4cd7a594f007dff8079575316fc3ed704bc9405ea4287f949a0bde9dbc7486519fbd289821c796eea40cd0f8545e
+  languageName: node
+  linkType: hard
+
+"@wix/motion-edm-autogen-transformations-core@npm:1.44.0":
+  version: 1.44.0
+  resolution: "@wix/motion-edm-autogen-transformations-core@npm:1.44.0"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    "@rushstack/eslint-patch": ^1.1.0
+    "@wix/motion-edm-autogen-common": 1.40.0
+    constant-case: ~3.0.0
+    deep-for-each: ~3.0.0
+    jsonpath-plus: ~5.1.0
+    lodash: ~4.17.0
+    tslib: ^2.0.0
+  checksum: d8615d07525fb23bea0e9be5829866cb0ce0ad208c26bab88db7617f9814523e1c0401241b02d47df0449a95505a8100c1f696f1564a502196c7b4cd2e2d3212
   languageName: node
   linkType: hard
 
@@ -1127,6 +1274,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wix/motion-edm-autogen-transformations@npm:1.48.0":
+  version: 1.48.0
+  resolution: "@wix/motion-edm-autogen-transformations@npm:1.48.0"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    "@rushstack/eslint-patch": ^1.1.0
+    "@wix/motion-edm-autogen-common": 1.40.0
+    "@wix/motion-edm-autogen-transformations-core": 1.44.0
+    constant-case: ~3.0.0
+    deep-for-each: ~3.0.0
+    http-status-codes: ^2.0.0
+    js-yaml: ~4.1.0
+    jsonpath-plus: ~5.1.0
+    lodash: ~4.17.0
+    tslib: ^2.0.0
+  checksum: c061f96c45012a5824ddd40873244b02b673c9b54645771b1bce7575fb605f0ae406b31b60ee3e7abadc31a7c9b35b35687cca458baab686f9e194ac84a27309
+  languageName: node
+  linkType: hard
+
+"@wix/motion-edm-autogen-types@npm:1.0.28":
+  version: 1.0.28
+  resolution: "@wix/motion-edm-autogen-types@npm:1.0.28"
+  checksum: d82000c6951d901449d95a575eb3dd89f4a9082ef0ce08402e3911a47ea13a55fd8ea0fe9c3ceae086cf41a063d32c50834d05292c15c4347b1b4a50dc2fcf3d
+  languageName: node
+  linkType: hard
+
 "@wix/motion-edm-autogen-types@npm:1.0.8":
   version: 1.0.8
   resolution: "@wix/motion-edm-autogen-types@npm:1.0.8"
@@ -1134,21 +1307,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wix/redirects@npm:^1.0.28":
-  version: 1.0.28
-  resolution: "@wix/redirects@npm:1.0.28"
+"@wix/redirects@npm:^1.0.41":
+  version: 1.0.44
+  resolution: "@wix/redirects@npm:1.0.44"
   dependencies:
-    "@wix/metro-runtime": ^1.0.0
-    "@wix/motion-edm-autogen-query-wrapper": ^1.0.0
-    "@wix/sdk-types": ^1.0.0
-  checksum: 043dfad84b572b5382a170ccb4e72065568f639a5901693a3cbed8d029077d7a8e19fec2ebbedd1bd62bcb811942080217cacf11d17d33ada07f399765daae2b
+    "@wix/redirects_redirects": 1.0.14
+  checksum: 654ab036f536f69b5d8179069bdcd949c61b14fde3dd3fdbd818d8157e58fd5835981194152a1236b0070e840534b55aebaaca85bed36dbec07eb8806419ebf9
   languageName: node
   linkType: hard
 
-"@wix/sdk-types@npm:1.5.1":
-  version: 1.5.1
-  resolution: "@wix/sdk-types@npm:1.5.1"
-  checksum: 8eb5d36125072cacdcf8d629fde462677fda3a526310109be976e1f88d8e232adf9f29b0ae7c4091fd36b0ec5d35ad660ce7e8b3266a219bb9a0a4f5b7aaea3c
+"@wix/redirects_redirects@npm:1.0.14":
+  version: 1.0.14
+  resolution: "@wix/redirects_redirects@npm:1.0.14"
+  dependencies:
+    "@wix/metro-runtime": ^1.1528.0
+    "@wix/motion-edm-autogen-query-wrapper": ^1.0.37
+    "@wix/sdk-runtime": ^0.2.10
+    "@wix/sdk-types": ^1.6.2
+  checksum: 75e84d391635a6e9d1101e729641df190a5862c2c29056db010c37167fe95b70151bb5368770e1360b38d0301230d930b3c27b6a686d6ad54879b8ce547d2da7
+  languageName: node
+  linkType: hard
+
+"@wix/sdk-runtime@npm:^0.2.10":
+  version: 0.2.11
+  resolution: "@wix/sdk-runtime@npm:0.2.11"
+  dependencies:
+    "@wix/sdk-types": ^1.5.11
+  checksum: b5ca9cab11986f40e1f5dcc4d7e897ef27923398f0b266aae995bf86b9520c328298e144846cf53bac5bd09de26ac06145927501c4f85ea2fc84d4311226264f
   languageName: node
   linkType: hard
 
@@ -1161,23 +1346,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wix/sdk-types@npm:^1.5.11, @wix/sdk-types@npm:^1.6.2, @wix/sdk-types@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "@wix/sdk-types@npm:1.6.3"
+  checksum: 7263bbed8630b0abb65e1d600ca74cb2941a32b91583681f7633e98df51f363474e89f33d580b970ac83199469cb2686faf02ba5b98e53c9fb85e9ad47654ef9
+  languageName: node
+  linkType: hard
+
 "@wix/sdk@npm:^1.5.0":
-  version: 1.5.7
-  resolution: "@wix/sdk@npm:1.5.7"
+  version: 1.9.2
+  resolution: "@wix/sdk@npm:1.9.2"
   dependencies:
     "@babel/runtime": ^7.23.2
-    "@wix/identity": ^1.0.62
-    "@wix/image-kit": ^1.40.0
-    "@wix/redirects": ^1.0.28
-    "@wix/sdk-types": 1.5.1
+    "@wix/identity": ^1.0.78
+    "@wix/image-kit": ^1.67.0
+    "@wix/redirects": ^1.0.41
+    "@wix/sdk-types": ^1.6.3
+    crypto-js: ^4.2.0
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+    jose: ^5.2.1
     pkce-challenge: ^3.1.0
     querystring: ^0.2.1
-    type-fest: ^3.13.1
+    type-fest: ^4.9.0
   dependenciesMeta:
     graphql:
       optional: true
-  checksum: b171a62587f55f7707900ab92ce6399301fd904b789a43fc9dc1daffc3a729c8de588fde1118626c7431d027d014521fd2203e4fc6328849a5b1035667a73cc8
+  checksum: f85e7a26fe326aacffc9bc1640a66e69afe853fa31a7cb9ade88b8f481fe45a2ab9b8dc9516814dba7f00f2c909a9cf3f7f8322ee5ae576b424f420a2c49081c
   languageName: node
   linkType: hard
 
@@ -1898,6 +2092,13 @@ __metadata:
   version: 4.1.1
   resolution: "crypto-js@npm:4.1.1"
   checksum: b3747c12ee3a7632fab3b3e171ea50f78b182545f0714f6d3e7e2858385f0f4101a15f2517e033802ce9d12ba50a391575ff4638c9de3dd9b2c4bc47768d5425
+  languageName: node
+  linkType: hard
+
+"crypto-js@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "crypto-js@npm:4.2.0"
+  checksum: f051666dbc077c8324777f44fbd3aaea2986f198fe85092535130d17026c7c2ccf2d23ee5b29b36f7a4a07312db2fae23c9094b644cc35f7858b1b4fcaf27774
   languageName: node
   linkType: hard
 
@@ -3406,6 +3607,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"http-status-codes@npm:^2.0.0":
+  version: 2.3.0
+  resolution: "http-status-codes@npm:2.3.0"
+  checksum: dae3b99e0155441b6df28e8265ff27c56a45f82c6092f736414233e9ccf063d5ea93c1e1279e8b499c4642e2538b37995c76b1640ed3f615d0e2883d3a1dcfd5
+  languageName: node
+  linkType: hard
+
 "https-proxy-agent@npm:^5.0.0":
   version: 5.0.1
   resolution: "https-proxy-agent@npm:5.0.1"
@@ -3956,6 +4164,13 @@ __metadata:
   bin:
     jiti: bin/jiti.js
   checksum: 7924062b5675142e3e272a27735be84b7bfc0a0eb73217fc2dcafa034f37c4f7b4b9ffc07dd98bcff0f739a8811ce1544db205ae7e97b1c86f0df92c65ce3c72
+  languageName: node
+  linkType: hard
+
+"jose@npm:^5.2.1":
+  version: 5.3.0
+  resolution: "jose@npm:5.3.0"
+  checksum: 822ba4d8f80ee5efb53763fd9daad20b08967bc2fcce0f74e95c31280fb12e34bcbc33c2090abccd5c3ef80b7bbab0f656581212bc72281280047a8496ae564c
   languageName: node
   linkType: hard
 
@@ -6273,6 +6488,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "tslib@npm:2.6.2"
+  checksum: 329ea56123005922f39642318e3d1f0f8265d1e7fcb92c633e0809521da75eeaca28d2cf96d7248229deb40e5c19adf408259f4b9640afd20d13aecc1430f3ad
+  languageName: node
+  linkType: hard
+
 "tunnel-agent@npm:^0.6.0":
   version: 0.6.0
   resolution: "tunnel-agent@npm:0.6.0"
@@ -6298,10 +6520,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^3.13.1":
-  version: 3.13.1
-  resolution: "type-fest@npm:3.13.1"
-  checksum: c06b0901d54391dc46de3802375f5579868949d71f93b425ce564e19a428a0d411ae8d8cb0e300d330071d86152c3ea86e744c3f2860a42a79585b6ec2fdae8e
+"type-fest@npm:^4.9.0":
+  version: 4.18.2
+  resolution: "type-fest@npm:4.18.2"
+  checksum: 2e9272b2b97b2f4ea2bbffda43cfce9ca89c474ad7c9565e39b80fee2ce609ea60385faffbbef98994b38feb3fa5fa38feb33acf175f4f85ee21d1773e87bf44
   languageName: node
   linkType: hard
 
