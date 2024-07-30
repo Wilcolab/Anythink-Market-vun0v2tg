@@ -1,243 +1,378 @@
-# Shopify App Template for Node
+# mongo-express
 
-This is a template for building a [Shopify app](https://shopify.dev/docs/apps/getting-started) using Node and React. It contains the basics for building a Shopify app.
+[![npm version](https://badge.fury.io/js/mongo-express.svg)](https://www.npmjs.com/package/mongo-express) [![npm](https://img.shields.io/npm/dm/mongo-express.svg)](https://www.npmjs.com/package/mongo-express) [![GitHub stars](https://img.shields.io/github/stars/mongo-express/mongo-express.svg)](https://github.com/mongo-express/mongo-express/stargazers) [![Known Vulnerabilities](https://snyk.io/test/npm/name/badge.svg)](https://snyk.io/test/npm/mongo-express)
+[![Build Status](https://github.com/mongo-express/mongo-express/actions/workflows/standard-ci.yml/badge.svg?branch=master)](https://github.com/mongo-express/mongo-express/actions/workflows/standard-ci.yml)
 
-Rather than cloning this repo, you can use your preferred package manager and the Shopify CLI with [these steps](#installing-the-template).
+A web-based MongoDB admin interface written with Node.js, Express, and Bootstrap 5
 
-## Benefits
+## Features
 
-Shopify apps are built on a variety of Shopify tools to create a great merchant experience. The [create an app](https://shopify.dev/docs/apps/getting-started/create) tutorial in our developer documentation will guide you through creating a Shopify app using this template.
+- Connect to multiple databases
+- View/add/delete databases
+- View/add/rename/delete collections
+- View/add/update/delete documents
+- Preview audio/video/image assets inline in the collection view
+- Nested and/or large objects are collapsible for easy overview
+- Async on-demand loading of big document properties (>100KB default) to keep collection view fast
+- GridFS support - add/get/delete incredibly large files
+- Use BSON data types in documents
+- Mobile / Responsive - Bootstrap 5 works passably on small screens when you're in a bind
+- Connect and authenticate to individual databases
+- Authenticate as admin to view all databases
+- Database blacklist/whitelist
+- Custom CA/TLS/SSL and CA validation disabling
+- Supports replica sets
 
-The Node app template comes with the following out-of-the-box functionality:
+## Screenshots
 
-- OAuth: Installing the app and granting permissions
-- GraphQL Admin API: Querying or mutating Shopify admin data
-- REST Admin API: Resource classes to interact with the API
-- Shopify-specific tooling:
-  - AppBridge
-  - Polaris
-  - Webhooks
+| Home Page                                                                      | Database View                                                                                    | Collection View                                                                       | Editing A Document                                                     |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| <img src="http://i.imgur.com/XiYhblA.png" title="Home Page showing databases"> | <img src="http://i.imgur.com/XWcIgY1.png" title="Viewing collections & buckets in a database" /> | <img src="https://imgur.com/UmGSr3x.png" title="Viewing documents in a collection" /> | <img src="https://imgur.com/lL38abn.png" title="Editing a document" /> |
 
-## Tech Stack
+These screenshots are from version 0.30.40
+View the album for more screenshots: (server status, database views, etc..)
+[https://imgur.com/a/9vHsF](https://imgur.com/a/9vHsF)
 
-This template combines a number of third party open-source tools:
+## Development
 
-- [Express](https://expressjs.com/) builds the backend.
-- [Vite](https://vitejs.dev/) builds the [React](https://reactjs.org/) frontend.
-- [React Router](https://reactrouter.com/) is used for routing. We wrap this with file-based routing.
-- [React Query](https://react-query.tanstack.com/) queries the Admin API.
-- [`i18next`](https://www.i18next.com/) and related libraries are used to internationalize the frontend.
-  - [`react-i18next`](https://react.i18next.com/) is used for React-specific i18n functionality.
-  - [`i18next-resources-to-backend`](https://github.com/i18next/i18next-resources-to-backend) is used to dynamically load app translations.
-  - [`@formatjs/intl-localematcher`](https://formatjs.io/docs/polyfills/intl-localematcher/) is used to match the user locale with supported app locales.
-  - [`@formatjs/intl-locale`](https://formatjs.io/docs/polyfills/intl-locale) is used as a polyfill for [`Intl.Locale`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) if necessary.
-  - [`@formatjs/intl-pluralrules`](https://formatjs.io/docs/polyfills/intl-pluralrules) is used as a polyfill for [`Intl.PluralRules`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules) if necessary.
+To test or develop with the latest version (_master_ branch) you can install using this git repository:
 
-The following Shopify tools complement these third-party tools to ease app development:
+    npm i mongo-express@github:mongo-express/mongo-express
+    OR
+    yarn add mongo-express@github:mongo-express/mongo-express
+    OR
+    pnpm add mongo-express@github:mongo-express/mongo-express
 
-- [Shopify API library](https://github.com/Shopify/shopify-node-api) adds OAuth to the Express backend. This lets users install the app and grant scope permissions.
-- [App Bridge React](https://shopify.dev/docs/apps/tools/app-bridge/getting-started/using-react) adds authentication to API requests in the frontend and renders components outside of the App’s iFrame.
-- [Polaris React](https://polaris.shopify.com/) is a powerful design system and component library that helps developers build high quality, consistent experiences for Shopify merchants.
-- [Custom hooks](https://github.com/Shopify/shopify-frontend-template-react/tree/main/hooks) make authenticated requests to the Admin API.
-- [File-based routing](https://github.com/Shopify/shopify-frontend-template-react/blob/main/Routes.jsx) makes creating new pages easier.
-- [`@shopify/i18next-shopify`](https://github.com/Shopify/i18next-shopify) is a plugin for [`i18next`](https://www.i18next.com/) that allows translation files to follow the same JSON schema used by Shopify [app extensions](https://shopify.dev/docs/apps/checkout/best-practices/localizing-ui-extensions#how-it-works) and [themes](https://shopify.dev/docs/themes/architecture/locales/storefront-locale-files#usage).
+Copy config.default.js to config.js and edit the default property to fit your local environment
 
-## Getting started
+**Run the development build using:**
 
-### Requirements
+    npm run start-dev
+    OR
+    yarn start-dev
+    OR
+    pnpm run start-dev
 
-1. You must [download and install Node.js](https://nodejs.org/en/download/) if you don't already have it.
-1. You must [create a Shopify partner account](https://partners.shopify.com/signup) if you don’t have one.
-1. You must create a store for testing if you don't have one, either a [development store](https://help.shopify.com/en/partners/dashboard/development-stores#create-a-development-store) or a [Shopify Plus sandbox store](https://help.shopify.com/en/partners/dashboard/managing-stores/plus-sandbox-store).
+## Usage (npm / yarn / pnpm / CLI)
 
-### Installing the template
+_mongo-express_ requires Node.js v4 or higher.
 
-This template can be installed using your preferred package manager:
+**To install:**
 
-Using yarn:
+    npm i -g mongo-express
+    OR
+    yarn add -g mongo-express
+    OR
+    pnpm add -g mongo-express
 
-```shell
-yarn create @shopify/app --template=node
+Or if you want to install a non-global copy:
+
+    npm i mongo-express
+    OR
+    yarn add mongo-express
+    OR
+    pnpm add mongo-express
+
+By default `config.default.js` is used where the basic access authentication is `admin`:`pass`. This is obviously not safe, and there are warnings in the console.
+
+**To configure:**
+
+Copy `YOUR_PATH/node_modules/mongo-express/config.default.js` into a new file called `YOUR_PATH/node_modules/mongo-express/config.js`.
+
+_Note:_ YOUR_PATH will depend on your current OS user and system configuration. You can see it in the output text shown after executing npm install.
+
+Fill in your MongoDB connection details and any other options you want to change in `config.js`.
+
+**You will also need to create a .env file with the variables for your cookie and session secrets, these are just default values**
+
+    ME_CONFIG_SITE_COOKIESECRET: 'cookiesecret',
+    ME_CONFIG_SITE_SESSIONSECRET: 'sessionsecret',
+
+**To run:**
+
+    cd YOUR_PATH/node_modules/mongo-express/ && node app.js
+
+or if you installed it globally, you can immediately start mongo-express like this:
+
+    mongo-express
+
+You can add some configuration options. Example:
+
+    node app.js --url mongodb://127.0.0.1:27017
+
+or:
+
+    mongo-express --URL mongodb://127.0.0.1:27017
+
+Configuration options:
+Option | Short | Description
+| - | - | -
+`--version` | `-V` | output the version number
+`--url <url>` | `-U <url>` | connection string url (`<url>` example: `mongodb://127.0.0.1:27017`)
+`--admin` | `-a` | enable authentication as admin
+`--port <port>` | `-p <port>` | listen on specified port (default `<port>` is `8081`)
+`--help` | `-h` | display help for command options
+
+## Usage (Express 4 middleware)
+
+**To mount as Express 4 middleware (see `node_modules/mongo-express/app.js`):**
+
+    var mongo_express = require('mongo-express/lib/middleware')
+    var mongo_express_config = require('./mongo_express_config')
+
+    app.use('/mongo_express', mongo_express(mongo_express_config))
+
+## Usage (Docker)
+
+Make sure you have a running [MongoDB container](https://hub.docker.com/_/mongo/) on a Docker network (`--network some-network` below) with `--name` or `--network-alias` set to `mongo`. Alternatively, set the connection string `ME_CONFIG_MONGODB_URL` to the proper connection for your MongoDB container on your Docker network.
+
+**Use [the Docker Hub image](https://hub.docker.com/_/mongo-express/):**
+
+```console
+$ docker run -it --rm -p 8081:8081 --network some-network mongo-express
 ```
 
-Using npm:
+**Build from source:**
 
-```shell
-npm init @shopify/app@latest -- --template=node
+Build an image from the project directory, then run the image.
+
+```console
+$ docker build -t mongo-express .
+$ docker run -it --rm -p 8081:8081 --network some-network mongo-express
 ```
 
-Using pnpm:
+You can use the following [environment variables](https://docs.docker.com/reference/run/#env-environment-variables) to modify the container's configuration:
 
-```shell
-pnpm create @shopify/app@latest --template=node
-```
+| Name                                           | Default                                             | Description                                                                                                                                                                     |
+| ---------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ME_CONFIG_MONGODB_URL`                        | `mongodb://admin:pass@localhost:27017/db?ssl=false` |                                                                                                                                                                                 |
+| `ME_CONFIG_MONGODB_ENABLE_ADMIN`               | `false`                                             | Enable administrator access. Send strings: `"true"` or `"false"`.                                                                                                               |
+| `ME_CONFIG_MONGODB_AUTH_USERNAME`              | `admin`                                             | Database username (only needed if `ENABLE_ADMIN` is `"false"`).                                                                                                                 |
+| `ME_CONFIG_MONGODB_AUTH_PASSWORD`              | `pass`                                              | Database password (only needed if `ENABLE_ADMIN` is `"false"`).                                                                                                                 |
+| `ME_CONFIG_MONGODB_ALLOW_DISK_USE`             | `false`                                             | Remove the limit of 100 MB of RAM on each aggregation pipeline stage.                                                                                                           |
+| `ME_CONFIG_MONGODB_TLS`                        | `false`                                             | Use TLS client certificate                                                                                                                                                      |
+| `ME_CONFIG_MONGODB_TLS_ALLOW_CERTS`            | `true`                                              | Validate mongod server certificate against CA                                                                                                                                   |
+| `ME_CONFIG_MONGODB_TLS_CA_FILE`                | ``                                                  | CA certificate File                                                                                                                                                             |
+| `ME_CONFIG_MONGODB_TLS_CERT_FILE`              | ``                                                  | TLS client certificate file                                                                                                                                                     |
+| `ME_CONFIG_MONGODB_TLS_CERT_KEY_FILE`          | ``                                                  | TLS client certificate key file                                                                                                                                                 |
+| `ME_CONFIG_MONGODB_TLS_CERT_KEY_FILE_PASSWORD` | ``                                                  | TLS client certificate key file password                                                                                                                                        |
+| `ME_CONFIG_MONGODB_URL_FILE`                   | ``                                                  | File version of ME_CONFIG_MONGODB_URL                                                                                                                                           |
+| `ME_CONFIG_SITE_BASEURL`                       | `/`                                                 | Set the express baseUrl to ease mounting at a subdirectory. Remember to include leading and trailing slash.                                                                     |
+| `ME_CONFIG_HEALTH_CHECK_PATH`                  | `/status`                                           | Set the mongo express healthcheck path. Remember to add the forward slash at the start.                                                                                         |
+| `ME_CONFIG_SITE_COOKIESECRET`                  | `cookiesecret`                                      | String used by [cookie-parser middleware](https://www.npmjs.com/package/cookie-parser) to sign cookies.                                                                         |
+| `ME_CONFIG_SITE_SESSIONSECRET`                 | `sessionsecret`                                     | String used to sign the session ID cookie by [express-session middleware](https://www.npmjs.com/package/express-session).                                                       |
+| `ME_CONFIG_BASICAUTH`                          | `false`                                             | Deprecated, use `ME_CONFIG_BASICAUTH_ENABLED` instead.                                                                                                                          |
+| `ME_CONFIG_BASICAUTH_ENABLED`                  | `false`                                             | Enable Basic Authentication. Send strings: `"true"` or `"false"`.                                                                                                               |
+| `ME_CONFIG_BASICAUTH_USERNAME`                 | ``                                                  | mongo-express web login name. If not defined, `admin` is the username.                                                                                                          |
+| `ME_CONFIG_BASICAUTH_USERNAME_FILE`            | ``                                                  | File version of `ME_CONFIG_BASICAUTH_USERNAME`                                                                                                                                  |
+| `ME_CONFIG_BASICAUTH_PASSWORD`                 | ``                                                  | mongo-express web login password. If not defined, `pass` is the password.                                                                                                       |
+| `ME_CONFIG_BASICAUTH_PASSWORD_FILE`            | ``                                                  | File version of `ME_CONFIG_BASICAUTH_PASSWORD`                                                                                                                                  |
+| `ME_CONFIG_REQUEST_SIZE`                       | `100kb`                                             | Used to configure maximum Mongo update payload size. CRUD operations above this size will fail due to restrictions in [body-parser](https://www.npmjs.com/package/body-parser). |
+| `ME_CONFIG_OPTIONS_READONLY`                   | `false`                                             | if readOnly is true, components of writing are not visible.                                                                                                                     |
+| `ME_CONFIG_OPTIONS_FULLWIDTH_LAYOUT`           | `false`                                             | If set to true an alternative page layout is used utilizing full window width.                                                                                                  |
+| `ME_CONFIG_OPTIONS_PERSIST_EDIT_MODE`          | `false`                                             | If set to true, remain on the same page after clicking on the Save button                                                                                                       |
+| `ME_CONFIG_OPTIONS_NO_DELETE`                  | `false`                                             | If noDelete is true, components of deleting are not visible.                                                                                                                    |
+| `ME_CONFIG_SITE_SSL_ENABLED`                   | `false`                                             | Enable SSL.                                                                                                                                                                     |
+| `ME_CONFIG_SITE_SSL_CRT_PATH`                  | ` `                                                 | SSL certificate file.                                                                                                                                                           |
+| `ME_CONFIG_SITE_SSL_KEY_PATH`                  | ` `                                                 | SSL key file.                                                                                                                                                                   |
+| `ME_CONFIG_SITE_GRIDFS_ENABLED`                | `false`                                             | Enable gridFS to manage uploaded files.                                                                                                                                         |
+| `ME_CONFIG_DOCUMENTS_PER_PAGE`                 | `10`                                                | How many documents you want to see at once in collection view                                                                                                                   |
+| `PORT`                                         | `8081`                                              | port that mongo-express will run on.                                                                                                                                            |
+| `VCAP_APP_HOST`                                | `localhost`                                         | address that mongo-express will listen on for incoming connections.                                                                                                             |
 
-This will clone the template and install the required dependencies.
+**Example:**
 
-#### Local Development
+    docker run -it --rm \
+        --name mongo-express \
+        --network web_default \
+        -p 8081:8081 \
+        -e ME_CONFIG_BASICAUTH_ENABLED="false" \
+        -e ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" \
+        mongo-express
 
-[The Shopify CLI](https://shopify.dev/docs/apps/tools/cli) connects to an app in your Partners dashboard. It provides environment variables, runs commands in parallel, and updates application URLs for easier development.
+This example links to a container name typical of `docker-compose`, changes the editor's color theme, and disables basic authentication.
 
-You can develop locally using your preferred package manager. Run one of the following commands from the root of your app.
+**To use:**
 
-Using yarn:
+The default port exposed from the container is 8081, so visit `http://localhost:8081` or whatever URL/port you entered into your config (if running standalone) or whatever `config.site.baseUrl` (if mounting as a middleware).
 
-```shell
-yarn dev
-```
+### Using Docker Extensions:
 
-Using npm:
+**Pre-requisite:**
 
-```shell
-npm run dev
-```
+- Docker Desktop 4.15
 
-Using pnpm:
+**Usage:**
 
-```shell
-pnpm run dev
-```
+By using Mongo Express Docker Extension, it's easy to setup Mongo Express on Docker Desktop with [just one click](https://open.docker.com/extensions/marketplace?extensionId=ajeetraina/mongodb-express-docker-extension&tag=1.0).
 
-Open the URL generated in your console. Once you grant permission to the app, you can start development.
 
-## Deployment
+## Usage (IBM Cloud)
 
-### Application Storage
+**Deploy to IBM Cloud**
 
-This template uses [SQLite](https://www.sqlite.org/index.html) to store session data. The database is a file called `database.sqlite` which is automatically created in the root. This use of SQLite works in production if your app runs as a single instance.
+Doing manually:
 
-The database that works best for you depends on the data your app needs and how it is queried. You can run your database of choice on a server yourself or host it with a SaaS company. Here’s a short list of databases providers that provide a free tier to get started:
+- Git clone this repository
+- Create a new or use already created [MongoDB service](https://www.ibm.com/products/databases-for-mongodb)
+- Change the file `examples/ibm-cloud/manifest.yml` to fit your IBM Cloud app and service environment
 
-| Database   | Type             | Hosters                                                                                                                                                                                                                               |
-| ---------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MySQL      | SQL              | [Digital Ocean](https://www.digitalocean.com/try/managed-databases-mysql), [Planet Scale](https://planetscale.com/), [Amazon Aurora](https://aws.amazon.com/rds/aurora/), [Google Cloud SQL](https://cloud.google.com/sql/docs/mysql) |
-| PostgreSQL | SQL              | [Digital Ocean](https://www.digitalocean.com/try/managed-databases-postgresql), [Amazon Aurora](https://aws.amazon.com/rds/aurora/), [Google Cloud SQL](https://cloud.google.com/sql/docs/postgres)                                   |
-| Redis      | Key-value        | [Digital Ocean](https://www.digitalocean.com/try/managed-databases-redis), [Amazon MemoryDB](https://aws.amazon.com/memorydb/)                                                                                                        |
-| MongoDB    | NoSQL / Document | [Digital Ocean](https://www.digitalocean.com/try/managed-databases-mongodb), [MongoDB Atlas](https://www.mongodb.com/atlas/database)                                                                                                  |
+Doing automatically:
 
-To use one of these, you need to change your session storage configuration. To help, here’s a list of [SessionStorage adapter packages](https://github.com/Shopify/shopify-api-js/blob/main/packages/shopify-api/docs/guides/session-storage.md).
+- Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on IBM Cloud
 
-### Build
+[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button_x2.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/mongo-express/mongo-express.git)
 
-The frontend is a single page app. It requires the `SHOPIFY_API_KEY`, which you can find on the page for your app in your partners dashboard. Paste your app’s key in the command for the package manager of your choice:
+Then, take the following action to customize to your environment:
 
-Using yarn:
+- Create your `config.js` file based on `config.default.js`
+  - Check if it is necessary to change the `dbLabel` according to the MongoDB service created
+  - Change the `basicAuth` properties, do not to keep the default values
 
-```shell
-cd web/frontend/ && SHOPIFY_API_KEY=REPLACE_ME yarn build
-```
+## Search
 
-Using npm:
+- _Simple_ search takes the user provided fields (`key` & `value`) and prepares a MongoDB find() object, with projection set to `{}` so returns all columns.
+- _Advanced_ search passes the `find` and `projection` fields/objects straight into MongoDB `db.collection.find(query, projection)`. The `find` object is where your query happens, while the `projection` object determines which columns are returned.
 
-```shell
-cd web/frontend/ && SHOPIFY_API_KEY=REPLACE_ME npm run build
-```
+See [MongoDB db.collection.find()](https://docs.mongodb.org/manual/reference/method/db.collection.find/) documentation for examples and exact usage.
 
-Using pnpm:
+## Planned features
 
-```shell
-cd web/frontend/ && SHOPIFY_API_KEY=REPLACE_ME pnpm run build
-```
+Pull Requests are always welcome! <3
 
-You do not need to build the backend.
+## Limitations
 
-## Hosting
+- Documents must have the `document._id` property to be edited
+- Binary BSON data type not tested
 
-When you're ready to set up your app in production, you can follow [our deployment documentation](https://shopify.dev/docs/apps/deployment/web) to host your app on a cloud provider like [Heroku](https://www.heroku.com/) or [Fly.io](https://fly.io/).
+## E2E Testing
 
-When you reach the step for [setting up environment variables](https://shopify.dev/docs/apps/deployment/web#set-env-vars), you also need to set the variable `NODE_ENV=production`.
+    We are currently trying to use Cypress, to open cypress use the command `cypress open`
+    To instrument the code to allow the E2E coverage to run, please run this command: `yarn nyc instrument --compact=false lib instrumented`
 
-## Known issues
+## Not Tested
 
-### Hot module replacement and Firefox
+- Binary/BinData
 
-When running the app with the CLI in development mode on Firefox, you might see your app constantly reloading when you access it.
-That happened in previous versions of the CLI, because of the way HMR websocket requests work.
+JSON documents are parsed through a javascript virtual machine, so **the web
+interface can be used for executing malicious javascript on a server**.
 
-We fixed this issue with v3.4.0 of the CLI, so after updating it, you can make the following changes to your app's `web/frontend/vite.config.js` file:
+**mongo-express should only be used privately for development purposes**.
 
-1. Change the definition `hmrConfig` object to be:
+## BSON Data Types
 
-   ```js
-   const host = process.env.HOST
-     ? process.env.HOST.replace(/https?:\/\//, "")
-     : "localhost";
+The following BSON data types are supported in the mongo-express document editor/viewer.
 
-   let hmrConfig;
-   if (host === "localhost") {
-     hmrConfig = {
-       protocol: "ws",
-       host: "localhost",
-       port: 64999,
-       clientPort: 64999,
-     };
-   } else {
-     hmrConfig = {
-       protocol: "wss",
-       host: host,
-       port: process.env.FRONTEND_PORT,
-       clientPort: 443,
-     };
-   }
-   ```
+**Native Javascript Types**
 
-1. Change the `server.host` setting in the configs to `"localhost"`:
+Strings, numbers, lists, booleans, null, etc.
 
-   ```js
-   server: {
-     host: "localhost",
-     ...
-   ```
+All numbers in Javascript are 64-bit floating points.
 
-### I can't get past the ngrok "Visit site" page
+**ObjectID/ObjectId**
 
-When you’re previewing your app or extension, you might see an ngrok interstitial page with a warning:
+    ObjectId()
 
-```text
-You are about to visit <id>.ngrok.io: Visit Site
-```
+Creates a new Object ID type.
 
-If you click the `Visit Site` button, but continue to see this page, then you should run dev using an alternate tunnel URL that you run using tunneling software.
-We've validated that [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/run-tunnel/trycloudflare/) works with this template.
+    ObjectId(id)
 
-To do that, you can [install the `cloudflared` CLI tool](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation/), and run:
+Use Object ID with the given 24-digit hexadecimal string.
 
-```shell
-# Note that you can also use a different port
-cloudflared tunnel --url http://localhost:3000
-```
+**ISODate**
 
-Out of the logs produced by cloudflare you will notice a https URL where the domain ends with `trycloudflare.com`. This is your tunnel URL. You need to copy this URL as you will need it in the next step.
+    ISODate()
 
-```shell
-2022-11-11T19:57:55Z INF Requesting new quick Tunnel on trycloudflare.com...
-2022-11-11T19:57:58Z INF +--------------------------------------------------------------------------------------------+
-2022-11-11T19:57:58Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
-2022-11-11T19:57:58Z INF |  https://randomly-generated-hostname.trycloudflare.com                                     |
-2022-11-11T19:57:58Z INF +--------------------------------------------------------------------------------------------+
-```
+Creates a new ISODate object with the current time.
 
-Below you would replace `randomly-generated-hostname` with what you have copied from the terminal. In a different terminal window, navigate to your app's root and with the URL from above you would call:
+`new Date()` can also be used (note the `new` keyword there).
 
-```shell
-# Using yarn
-yarn dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
-# or using npm
-npm run dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
-# or using pnpm
-pnpm dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
-```
+    ISODate(timestamp)
 
-## Developer resources
+Uses ISODate object with the given timestamp.
 
-- [Introduction to Shopify apps](https://shopify.dev/docs/apps/getting-started)
-- [App authentication](https://shopify.dev/docs/apps/auth)
-- [Shopify CLI](https://shopify.dev/docs/apps/tools/cli)
-- [Shopify API Library documentation](https://github.com/Shopify/shopify-api-js#readme)
-- [Getting started with internationalizing your app](https://shopify.dev/docs/apps/best-practices/internationalization/getting-started)
-  - [i18next](https://www.i18next.com/)
-    - [Configuration options](https://www.i18next.com/overview/configuration-options)
-  - [react-i18next](https://react.i18next.com/)
-    - [`useTranslation` hook](https://react.i18next.com/latest/usetranslation-hook)
-    - [`Trans` component usage with components array](https://react.i18next.com/latest/trans-component#alternative-usage-components-array)
-  - [i18n-ally VS Code extension](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)
+**UUID**
+
+    UUID()
+
+Creates a new UUID v4.
+
+Can also be used `new UUID()` (note the `new` keyword there).
+
+    UUID(uuid)
+
+Uses UUID v4 with the given 24-digit hexadecimal string.
+
+Example: `UUID("dee11d4e-63c6-4d90-983c-5c9f1e79e96c")` or `UUID("dee11d4e63c64d90983c5c9f1e79e96c")`
+
+**DBRef/Dbref**
+
+    DBRef(collection, objectID)
+
+    DBRef(collection, objectID, database)
+
+Object ID is the ID string, not the ObjectId type.
+
+The database value is optional.
+
+**Timestamp**
+
+    Timestamp()
+
+Creates a new Timestamp object with a value of 0.
+
+    Timestamp(time, ordinal)
+
+Example: `Timestamp(ISODate(), 0)`.
+
+See [http://www.mongodb.org/display/DOCS/Timestamp+data+type](http://www.mongodb.org/display/DOCS/Timestamp+data+type) for more info about the Timestamp data type.
+
+**Code**
+
+    Code(code)
+
+Code can be a native Javascript function, or it can be a string.
+
+Specifying a scope/context is not supported.
+
+**MinKey**
+
+    MinKey()
+
+**MaxKey**
+
+    MaxKey()
+
+**Symbol**
+
+    Symbol(string)
+
+## Example Document
+
+Here is an example of a document which can be read/edited in mongo-express (media truncated for legibility):
+
+    {
+      "_id": ObjectId(),
+      "dates": {
+        "date": ISODate("2012-05-14T16:20:09.314Z"),
+        "new_date": ISODate(),
+        "alternative": new Date()
+      },
+      "photo": "data:image/jpeg;base64,/9j/4...",
+      "video": "data:video/webm;base64,GkXfo...",
+      "audio": "data:audio/ogg;base64,T2dnUw...",
+      "bool": true,
+      "string": "hello world!",
+      "list of numbers": [
+        123,
+        111e+87,
+        4.4,
+        -12345.765
+      ],
+      "reference": DBRef("collection", "4fb1299686a989240b000001"),
+      "ts": Timestamp(ISODate(), 1),
+      "minkey": MinKey(),
+      "maxkey": MaxKey(),
+      "func": Code(function() { alert('Hello World!') }),
+      "symbol": Symbol("test")
+    }
