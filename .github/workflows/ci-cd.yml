@@ -1,0 +1,19 @@
+name: CI/CD Pipeline
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run checks
+      uses: actions/setup-node@v3
+      with:
+        node-version: "16"
+    - name: Install dependencies
+      run: yarn install
+      working-directory: frontend
+    - name: Run frontend client
+      run:  yarn test
+      working-directory: frontend
