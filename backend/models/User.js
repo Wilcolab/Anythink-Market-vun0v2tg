@@ -57,7 +57,7 @@ UserSchema.methods.generateJWT = function() {
   var today = new Date();
   var exp = new Date(today);
 
-  exp.setDate(today.getDate() + 10);
+  exp.setTime(exp.getTime() + 3600000);
 
   return jwt.sign(
     {
